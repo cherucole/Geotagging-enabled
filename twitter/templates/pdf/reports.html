@@ -1,0 +1,111 @@
+<html>
+
+<head>
+    <title>Title</title>
+    <style type="text/css">
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+
+        body {
+            font-weight: 200;
+            font-size: 14px;
+        }
+
+        .header {
+            font-size: 20px;
+            font-weight: 100;
+            text-align: center;
+            color: #007cae;
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: 100;
+            /* text-align: right;*/
+            padding: 10px 20px 0px 20px;
+        }
+
+        .title span {
+            color: #007cae;
+        }
+
+        .details {
+            padding: 10px 20px 0px 20px;
+            text-align: left !important;
+            /*margin-left: 40%;*/
+        }
+
+        .hrItem {
+            border: none;
+            height: 1px;
+            /* Set the hr color */
+            color: #333;
+            /* old IE */
+            background-color: #fff;
+            /* Modern Browsers */
+        }
+    </style>
+</head>
+
+<body>
+    <div class='wrapper'>
+        <div class='header'>
+            <p class='title'>Pdf report for searched topics by {{profile.username}}</p>
+        </div>
+        <table>
+            <tr>
+                <th>Topic</th>
+                <th>Sample size</th>
+                <th>Positive tweets</th>
+
+                <th>Negative tweets</th>
+
+                <th>Neutral tweets</th>
+            </tr>
+        </table>
+        <div>
+
+            {% for post in sentiments %}
+
+
+            <table>
+                <tr>
+                    <th>{{post.topic}}</th>
+                    <th style="color:rgb(94, 92, 92);">{{post.sample_size}}</th>
+
+                    <th style="color:rgb(94, 92, 92);">{{post.postive_count}}</th>
+                    <th style="color:rgb(94, 92, 92);">{{post.negative_count}}</th>
+
+                    <th style="color:rgb(94, 92, 92);">{{post.neutral_count}}</th>
+
+                </tr>
+            </table>
+
+
+
+
+            {% empty %}
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                <h5>No reports at the moment :-( You have not searched for any topics.</h5>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>
